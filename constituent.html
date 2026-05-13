@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 UX License - Information Collection</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Fix the CSS variable typo in styles.css for step labels */
+    :root {
+      --step-indicator-label-font-size: 1.6rem;
+    }
+
+    /* ===== Constituent Header ===== */
+    .constituent-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1.6rem 3.2rem;
+      background: #fff;
+    }
+
+    .constituent-header__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .constituent-header__logo {
+      max-height: 56px;
+      max-width: 56px;
+    }
+
+    .constituent-header__agency-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1b1b1b;
+      margin: 0;
+    }
+
+    .constituent-header__aside {
+      font-size: 1.4rem;
+      color: #71767a;
+      padding-top: 0.4rem;
+    }
+
+    /* ===== Application Card ===== */
+    .application-card {
+      border: 1px solid #aeb0b5;
+      background-color: #fff;
+      padding: 0 2.4rem 2.4rem;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    /* ===== Section Tabs (sub-step tab strip) ===== */
+    .section-tabs {
+      display: flex;
+      gap: 4px;
+      margin-top: 2rem;
+    }
+
+    .section-tab {
+      flex: 1;
+      max-width: 24rem;
+      padding: 1.6rem 2rem;
+      font-family: "Public Sans Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #919191;
+      background: none;
+      border: none;
+      border-top: 8px solid #c9c9c9;
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .section-tab.active {
+      color: #005ea2;
+      border-top-color: #005ea2;
+      font-weight: bold;
+    }
+
+    .section-tab:hover:not(.active) {
+      color: #1b1b1b;
+    }
+
+    .section-tab:focus {
+      outline: 0.25rem solid #2491ff;
+      outline-offset: -2px;
+    }
+
+    /* ===== Tab Panels ===== */
+    .section-tab-panel {
+      display: none;
+    }
+
+    .section-tab-panel.active {
+      display: block;
+    }
+
+    /* ===== Sub-step Heading ("1 of 4 Personal Information") ===== */
+    .substep-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 2rem 0 4.4rem;
+    }
+
+    .substep-heading__counter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      min-width: 3rem;
+      border-radius: 50%;
+      background-color: #005ea2;
+      color: #fff;
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .substep-heading__total {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #005ea2;
+    }
+
+    .substep-heading__text {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1b1b1b;
+    }
+
+    /* ===== Form Groups ===== */
+    .usa-form-group {
+      margin-bottom: 2rem;
+    }
+
+    /* ===== Action Buttons Bar ===== */
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 0;
+    }
+
+    /* ===== Constituent Footer ===== */
+    .constituent-footer {
+      text-align: right;
+      background: #efefef;
+      padding-right: 4rem;
+    }
+
+    .constituent-footer p {
+      margin: 0.2rem 0;
+      font-size: 1.6rem;
+      color: #444;
+    }
+
+    .constituent-footer a {
+      color: #005ea2;
+      text-decoration: underline;
+    }
+
+    /* Keep step indicator labels visible on constituent page */
+    .usa-step-indicator__segment-label {
+      font-size: 1.6rem;
+    }
+
+    /* Constituent page spacing overrides */
+    .app-builder-content__heading {
+      margin-top: 8rem;
+      margin-bottom: 4rem;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- Header -->
+    <header class="constituent-header">
+      <div class="constituent-header__brand">
+        <img src="assets/il-logo.png" alt="Illinois state seal" class="constituent-header__logo">
+        <p class="constituent-header__agency-name">Illinois Department of Natural Resources</p>
+      </div>
+      <div class="constituent-header__aside">Illinois Department of Natural Resources</div>
+    </header>
+
+    <main id="main-content" class="grid-container">
+
+      <!-- Top 8-step progress indicator -->
+      <div class="usa-step-indicator margin-top-4" aria-label="Application progress">
+        <ol class="usa-step-indicator__segments">
+          <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
+            <span class="usa-step-indicator__segment-label">Information Collection</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Questions</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Fees</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Document Upload</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Information Summary</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Electronic Signature</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Payment</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Confirmation</span>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Step heading -->
+      <div class="usa-step-indicator__header">
+        <h1 class="usa-step-indicator__heading">
+          <span class="usa-step-indicator__heading-counter">1</span>
+          <span class="usa-step-indicator__total-steps">of 8</span>
+          <span class="usa-step-indicator__heading-text">Information Collection</span>
+        </h1>
+      </div>
+
+      <!-- Title / Description -->
+      <h1 class="app-builder-content__heading">2026 UX License</h1>
+      <p class="app-builder-content__text">Get your UX license for only $5000</p>
+
+      <!-- Instructions Accordion (expanded by default) -->
+      <div class="usa-accordion usa-accordion--bordered" style="margin-top: 4rem; margin-bottom: 4rem;">
+        <h3 class="usa-accordion__heading">
+          <button type="button" class="usa-accordion__button" aria-expanded="true" aria-controls="instructions-content">
+            Instructions
+          </button>
+        </h3>
+        <div id="instructions-content" class="usa-accordion__content">
+          <p style="margin: 0; font-size: 1.6rem;">Get your UX license for only $5000 or More!</p>
+        </div>
+      </div>
+
+      <!-- Application Card -->
+      <div class="application-card">
+
+          <!-- Sub-section Tab Strip -->
+          <div class="section-tabs" role="tablist" aria-label="Information sections">
+            <button class="section-tab active" role="tab" aria-selected="true"
+              aria-controls="panel-personal" id="tab-personal">Personal Information</button>
+            <button class="section-tab" role="tab" aria-selected="false"
+              aria-controls="panel-contact" id="tab-contact">Contact Information</button>
+            <button class="section-tab" role="tab" aria-selected="false"
+              aria-controls="panel-mailing" id="tab-mailing">Mailing Address</button>
+            <button class="section-tab" role="tab" aria-selected="false"
+              aria-controls="panel-identification" id="tab-identification">Identification Information</button>
+          </div>
+
+          <!-- Panel 1: Personal Information -->
+          <div class="section-tab-panel active" id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
+            <div class="substep-heading">
+              <span class="substep-heading__counter">1</span>
+              <span class="substep-heading__total">of 4</span>
+              <span class="substep-heading__text">Personal Information</span>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="prefix">Prefix</label>
+              <select class="usa-select" id="prefix" name="prefix">
+                <option value="">Please Select</option>
+                <option value="mr">Mr.</option>
+                <option value="mrs">Mrs.</option>
+                <option value="ms">Ms.</option>
+                <option value="dr">Dr.</option>
+                <option value="prof">Prof.</option>
+              </select>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="first-name">First Name <span class="field-required">Required</span></label>
+              <input class="usa-input" id="first-name" name="first-name" type="text" autocomplete="given-name" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="middle-name">Middle Name</label>
+              <input class="usa-input" id="middle-name" name="middle-name" type="text" autocomplete="additional-name" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="last-name">Last Name <span class="field-required">Required</span></label>
+              <input class="usa-input" id="last-name" name="last-name" type="text" autocomplete="family-name" />
+            </div>
+          </div>
+
+          <!-- Panel 2: Contact Information -->
+          <div class="section-tab-panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact">
+            <div class="substep-heading">
+              <span class="substep-heading__counter">2</span>
+              <span class="substep-heading__total">of 4</span>
+              <span class="substep-heading__text">Contact Information</span>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="email">Email Address <span class="field-required">Required</span></label>
+              <input class="usa-input" id="email" name="email" type="email" autocomplete="email" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="phone">Phone Number <span class="field-required">Required</span></label>
+              <input class="usa-input" id="phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="phone-type">Phone Type</label>
+              <select class="usa-select" id="phone-type" name="phone-type">
+                <option value="">Please Select</option>
+                <option value="mobile">Mobile</option>
+                <option value="home">Home</option>
+                <option value="work">Work</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Panel 3: Mailing Address -->
+          <div class="section-tab-panel" id="panel-mailing" role="tabpanel" aria-labelledby="tab-mailing">
+            <div class="substep-heading">
+              <span class="substep-heading__counter">3</span>
+              <span class="substep-heading__total">of 4</span>
+              <span class="substep-heading__text">Mailing Address</span>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="street1">Street Address <span class="field-required">Required</span></label>
+              <input class="usa-input" id="street1" name="street1" type="text" autocomplete="address-line1" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="street2">Street Address Line 2</label>
+              <input class="usa-input" id="street2" name="street2" type="text" autocomplete="address-line2" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="city">City <span class="field-required">Required</span></label>
+              <input class="usa-input" id="city" name="city" type="text" autocomplete="address-level2" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="state">State <span class="field-required">Required</span></label>
+              <select class="usa-select" id="state" name="state" autocomplete="address-level1">
+                <option value="">Please Select</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MO">Missouri</option>
+                <option value="WI">Wisconsin</option>
+              </select>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="zip">ZIP Code <span class="field-required">Required</span></label>
+              <input class="usa-input" id="zip" name="zip" type="text" maxlength="10"
+                pattern="[0-9]{5}(-[0-9]{4})?" autocomplete="postal-code" style="max-width: 16rem;" />
+            </div>
+          </div>
+
+          <!-- Panel 4: Identification Information -->
+          <div class="section-tab-panel" id="panel-identification" role="tabpanel" aria-labelledby="tab-identification">
+            <div class="substep-heading">
+              <span class="substep-heading__counter">4</span>
+              <span class="substep-heading__total">of 4</span>
+              <span class="substep-heading__text">Identification Information</span>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="dob">Date of Birth <span class="field-required">Required</span></label>
+              <input class="usa-input" id="dob" name="dob" type="date" style="max-width: 20rem;" autocomplete="bday" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="id-type">ID Type <span class="field-required">Required</span></label>
+              <select class="usa-select" id="id-type" name="id-type">
+                <option value="">Please Select</option>
+                <option value="dl">Driver's License</option>
+                <option value="passport">Passport</option>
+                <option value="state-id">State ID</option>
+              </select>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="id-number">ID Number <span class="field-required">Required</span></label>
+              <input class="usa-input" id="id-number" name="id-number" type="text" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="id-state">ID Issuing State</label>
+              <select class="usa-select" id="id-state" name="id-state">
+                <option value="">Please Select</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MO">Missouri</option>
+                <option value="WI">Wisconsin</option>
+              </select>
+            </div>
+          </div>
+
+      </div><!-- end .application-card -->
+
+      <!-- Action Buttons (outside the card) -->
+      <div class="form-actions">
+        <button type="button" class="usa-button usa-button--secondary">Cancel</button>
+        <button type="button" class="usa-button" id="next-btn">Next</button>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="constituent-footer">
+      <p>Illinois Department of Natural Resources</p>
+      <p><a href="tel:9858858441">(985) 885-8441</a></p>
+      <p><a href="mailto:lisa.benavides@egov.com">lisa.benavides@egov.com</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.section-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.section-tab').forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.section-tab-panel').forEach(function (p) {
+          p.classList.remove('active');
+        });
+        this.classList.add('active');
+        this.setAttribute('aria-selected', 'true');
+        document.getElementById(this.getAttribute('aria-controls')).classList.add('active');
+      });
+    });
+
+    // Accordion toggle
+    document.querySelectorAll('.usa-accordion__button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        var content = document.getElementById(this.getAttribute('aria-controls'));
+        if (expanded) {
+          this.setAttribute('aria-expanded', 'false');
+          content.setAttribute('hidden', '');
+        } else {
+          this.setAttribute('aria-expanded', 'true');
+          content.removeAttribute('hidden');
+        }
+      });
+    });
+
+    // Next button advances tabs in sequence
+    var tabs = Array.from(document.querySelectorAll('.section-tab'));
+    document.getElementById('next-btn').addEventListener('click', function () {
+      var activeIndex = tabs.findIndex(function (t) { return t.classList.contains('active'); });
+      if (activeIndex < tabs.length - 1) {
+        tabs[activeIndex + 1].click();
+      }
+    });
+  </script>
+</body>
+
+</html>
