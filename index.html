@@ -4,358 +4,459 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document Upload - RLP</title>
-  <!-- Custom RLP Styles -->
+  <title>2026 UX License - Information Collection</title>
   <link rel="stylesheet" href="css/styles.css" />
   <style>
-    .wysiwyg-wrapper {
-      border: 1px solid #565c65;
-      background: #fff;
-      margin-top: 0.8rem;
+    /* Fix the CSS variable typo in styles.css for step labels */
+    :root {
+      --step-indicator-label-font-size: 1.6rem;
     }
-    .wysiwyg-toolbar {
+
+    /* ===== Constituent Header ===== */
+    .constituent-header {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      padding: 0.5rem 0.8rem;
-      border-bottom: 1px solid #dfe1e2;
-      background: #f0f0f0;
-    }
-    .wysiwyg-toolbar button {
-      min-width: 3rem;
-      height: 2.8rem;
-      border: 1px solid #a9aeb1;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1.6rem 3.2rem;
       background: #fff;
-      cursor: pointer;
-      font-size: 1.4rem;
-      font-family: inherit;
-      padding: 0 0.6rem;
-      border-radius: 2px;
     }
-    .wysiwyg-toolbar button:hover {
-      background: #dfe1e2;
+
+    .constituent-header__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
     }
-    .wysiwyg-toolbar .toolbar-sep {
-      width: 1px;
-      background: #a9aeb1;
-      margin: 0.2rem 0.2rem;
+
+    .constituent-header__logo {
+      max-height: 56px;
+      max-width: 56px;
     }
-    .wysiwyg-content {
-      min-height: 12rem;
-      padding: 0.8rem;
-      font-size: 1.6rem;
-      font-family: "Public Sans Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.5;
-      outline: none;
-      overflow-y: auto;
-    }
-    .wysiwyg-content:focus {
-      outline: 0.25rem solid #2491ff;
-      outline-offset: 0;
-    }
-    .wysiwyg-footer {
-      padding: 0.3rem 0.8rem;
-      font-size: 1.3rem;
-      color: #71767a;
-      text-align: right;
-      border-top: 1px solid #dfe1e2;
-    }
-    .wysiwyg-footer .char-count.over-limit {
-      color: #b50909;
+
+    .constituent-header__agency-name {
+      font-size: 1.8rem;
       font-weight: 700;
+      color: #1b1b1b;
+      margin: 0;
     }
+
+    .constituent-header__aside {
+      font-size: 1.4rem;
+      color: #71767a;
+      padding-top: 0.4rem;
+    }
+
+    /* ===== Application Card ===== */
+    .application-card {
+      border: 1px solid #aeb0b5;
+      background-color: #fff;
+      padding: 0 2.4rem 2.4rem;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    /* ===== Section Tabs (sub-step tab strip) ===== */
+    .section-tabs {
+      display: flex;
+      gap: 4px;
+      margin-top: 2rem;
+    }
+
+    .section-tab {
+      flex: 1;
+      max-width: 24rem;
+      padding: 1.6rem 2rem;
+      font-family: "Public Sans Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #919191;
+      background: none;
+      border: none;
+      border-top: 8px solid #c9c9c9;
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .section-tab.active {
+      color: #005ea2;
+      border-top-color: #005ea2;
+      font-weight: bold;
+    }
+
+    .section-tab:hover:not(.active) {
+      color: #1b1b1b;
+    }
+
+    .section-tab:focus {
+      outline: 0.25rem solid #2491ff;
+      outline-offset: -2px;
+    }
+
+    /* ===== Tab Panels ===== */
+    .section-tab-panel {
+      display: none;
+    }
+
+    .section-tab-panel.active {
+      display: block;
+    }
+
+    /* ===== Sub-step Heading ("1 of 4 Personal Information") ===== */
+    .substep-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 2rem 0 4.4rem;
+    }
+
+    .substep-heading__counter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      min-width: 3rem;
+      border-radius: 50%;
+      background-color: #005ea2;
+      color: #fff;
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .substep-heading__total {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #005ea2;
+    }
+
+    .substep-heading__text {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1b1b1b;
+    }
+
+    /* ===== Form Groups ===== */
+    .usa-form-group {
+      margin-bottom: 2rem;
+    }
+
+    /* ===== Action Buttons Bar ===== */
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 0;
+    }
+
+    /* ===== Constituent Footer ===== */
+    .constituent-footer {
+      text-align: right;
+      background: #efefef;
+      padding-right: 4rem;
+    }
+
+    .constituent-footer p {
+      margin: 0.2rem 0;
+      font-size: 1.6rem;
+      color: #444;
+    }
+
+    .constituent-footer a {
+      color: #005ea2;
+      text-decoration: underline;
+    }
+
+    /* Keep step indicator labels visible on constituent page */
+    .usa-step-indicator__segment-label {
+      font-size: 1.6rem;
+    }
+
+    /* Constituent page spacing overrides */
+    .app-builder-content__heading {
+      margin-top: 8rem;
+      margin-bottom: 4rem;
+    }
+
+    
   </style>
 </head>
 
 <body>
   <div class="app-container">
-    <div class="header management">
-      <a class="usa-skipnav" href="#main-content">Skip to Main Content</a>
 
-      <header class="usa-header">
-        <div class="skinny-header-container">
-          <div class="grid-container">
-            <div class="welcome-agency usa-banner__header-text">
-              Welcome DNR! &nbsp;<a href="#"><u>Logout</u></a>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div class="border-bottom-2px border-base-lighter">
-        <div class="grid-container navigation">
-          <div class="grid-row">
-            <div class="tablet:grid-col-6 logo-flex">
-              <a class="agency-logo-link" href="index.html">
-                <img src="assets/agency-gov-logo.png" alt="AGENCY NAME agency logo"
-                  class="agency-logo">
-              </a>
-              <a class="agency-name-link" href="index.html">
-                <div class="agency-name">AGENCY NAME</div>
-              </a>
-            </div>
-            <div class="tablet:grid-col-6">
-              <nav class="grid-container">
-                <div class="grid-row header--nav-links">
-                  <div class="tablet:grid-col nav__item">
-                    <a class="usa-link" href="index.html">
-                      <img src="assets/rlp-logo.png" alt="RLP logo" class="margin-right-1" height="30">Home
-                    </a>
-                  </div>
-                  <div class="tablet:grid-col-auto nav__item">
-                    <a class="usa-link" href="search.html">
-                      <svg aria-hidden="true" focusable="false"
-                        class="svg-inline--fa fa-magnifying-glass fa-xl margin-right-1" role="img"
-                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
-                        <path fill="currentColor"
-                          d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
-                        </path>
-                      </svg>Search
-                    </a>
-                  </div>
-                  <div class="tablet:grid-col nav__item">
-                    <a class="usa-link" href="#" target="_blank">
-                      <svg aria-hidden="true" focusable="false" class="svg-inline--fa fa-life-ring fa-xl margin-right-1"
-                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
-                        <path fill="currentColor"
-                          d="M367.2 412.5C335.9 434.9 297.5 448 256 448s-79.9-13.1-111.2-35.5l58-58c15.8 8.6 34 13.5 53.3 13.5s37.4-4.9 53.3-13.5l58 58zm90.7 .8c33.8-43.4 54-98 54-157.3s-20.2-113.9-54-157.3c9-12.5 7.9-30.1-3.4-41.3S425.8 45 413.3 54C369.9 20.2 315.3 0 256 0S142.1 20.2 98.7 54c-12.5-9-30.1-7.9-41.3 3.4S45 86.2 54 98.7C20.2 142.1 0 196.7 0 256s20.2 113.9 54 157.3c-9 12.5-7.9 30.1 3.4 41.3S86.2 467 98.7 458c43.4 33.8 98 54 157.3 54s113.9-20.2 157.3-54c12.5 9 30.1 7.9 41.3-3.4s12.4-28.8 3.4-41.3zm-45.5-46.1l-58-58c8.6-15.8 13.5-34 13.5-53.3s-4.9-37.4-13.5-53.3l58-58C434.9 176.1 448 214.5 448 256s-13.1 79.9-35.5 111.2zM367.2 99.5l-58 58c-15.8-8.6-34-13.5-53.3-13.5s-37.4 4.9-53.3 13.5l-58-58C176.1 77.1 214.5 64 256 64s79.9 13.1 111.2 35.5zM157.5 309.3l-58 58C77.1 335.9 64 297.5 64 256s13.1-79.9 35.5-111.2l58 58c-8.6 15.8-13.5 34-13.5 53.3s4.9 37.4 13.5 53.3zM208 256a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z">
-                        </path>
-                      </svg>Help
-                    </a>
-                  </div>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
+    <!-- Header -->
+    <header class="constituent-header">
+      <div class="constituent-header__brand">
+        <img src="assets/il-logo.png" alt="Illinois state seal" class="constituent-header__logo">
+        <p class="constituent-header__agency-name">Illinois Department of Natural Resources</p>
       </div>
-    </div>
+      <div class="constituent-header__aside">Illinois Department of Natural Resources</div>
+    </header>
 
     <main id="main-content" class="grid-container">
-      <div class="usa-step-indicator margin-top-4" aria-label="progress">
+
+      <!-- Top 8-step progress indicator -->
+      <div class="usa-step-indicator margin-top-4" aria-label="Application progress">
         <ol class="usa-step-indicator__segments">
           <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
-            <a class="usa-step-indicator__segment-label" href="document-upload.html">Application Details</a>
+            <span class="usa-step-indicator__segment-label">Information Collection</span>
           </li>
           <li class="usa-step-indicator__segment">
-            <a class="usa-step-indicator__segment-label" href="user-information.html">Applicant Information</a>
+            <span class="usa-step-indicator__segment-label">Questions</span>
           </li>
           <li class="usa-step-indicator__segment">
-            <a class="usa-step-indicator__segment-label" href="question-builder.html">Question Builder</a>
+            <span class="usa-step-indicator__segment-label">Fees</span>
           </li>
           <li class="usa-step-indicator__segment">
-            <span class="usa-step-indicator__segment-label">Conditions</span>
+            <span class="usa-step-indicator__segment-label">Document Upload</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Information Summary</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Electronic Signature</span>
           </li>
           <li class="usa-step-indicator__segment">
             <span class="usa-step-indicator__segment-label">Payment</span>
           </li>
           <li class="usa-step-indicator__segment">
-            <span class="usa-step-indicator__segment-label">Preview</span>
-          </li>
-          <li class="usa-step-indicator__segment">
-            <span class="usa-step-indicator__segment-label">License</span>
-          </li>
-          <li class="usa-step-indicator__segment">
-            <span class="usa-step-indicator__segment-label">Notification</span>
+            <span class="usa-step-indicator__segment-label">Confirmation</span>
           </li>
         </ol>
       </div>
 
+      <!-- Step heading -->
       <div class="usa-step-indicator__header">
         <h1 class="usa-step-indicator__heading">
           <span class="usa-step-indicator__heading-counter">1</span>
           <span class="usa-step-indicator__total-steps">of 8</span>
-          <span class="usa-step-indicator__heading-text">Application Details</span>
+          <span class="usa-step-indicator__heading-text">Information Collection</span>
         </h1>
       </div>
 
-      <div class="margin-top-4 app-builder-container">
-        <!-- Left sidebar -->
-        <div class="app-builder-sidebar">
-          <div class="usa-step-indicator usa-step-indicator--sidebar" aria-label="step progress">
-            <ol class="usa-step-indicator__segments">
-              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
-                <span class="usa-step-indicator__segment-label">Getting Started</span>
-              </li>
-              <div class="step-connector-line"></div>
-              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
-                <a class="usa-step-indicator__segment-label" href="application-type.html">Application Type</a>
-              </li>
-              <div class="step-connector-line"></div>
-              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
-                <a class="usa-step-indicator__segment-label" href="title-information.html">Title Information</a>
-              </li>
-              <div class="step-connector-line"></div>
-              <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
-                <a class="usa-step-indicator__segment-label" href="form-number-deactivation.html">Form No., Deactivation &amp; Search Terms</a>
-              </li>
-            </ol>
-          </div>
-        </div>
+      <!-- Title / Description -->
+      <h1 class="app-builder-content__heading">2026 UX License</h1>
+      <p class="app-builder-content__text">Get your UX license for only $5000</p>
 
-        <!-- Right content area -->
-        <div class="app-builder-content">
-          <h1 class="app-builder-content__heading">Document Upload</h1>
-
-          <p class="app-builder-content__text">Define the documents included on application submissions.</p>
-
-          <ul class="app-builder-content__text" style="margin-top: 0; padding-left: 2.4rem;">
-            <li style="margin-bottom: 0.8rem;">First provide the applicant with instructions and information about the documents needed.</li>
-            <li style="margin-bottom: 0.8rem;">Then, add documents up to the maximum of 25. For each document, define details that will help constituents understand what is being requested and enable your organization to effectively manage the documents.</li>
-            <li style="margin-bottom: 0.8rem;">Later, in the Question Builder and Conditions sections, optionally map these documents to questions in your application. Documents that are part of conditions cannot be changed. To change them, first go to the Conditions tab and remove the condition(s). Then, return to this page and make any edits. Finally, return to the Conditions tab and reapply any rules. If you do not map a document to a question, then it will appear in a separate Document Upload section on the application.</li>
-          </ul>
-
-          <!-- Icon Key (above section) -->
-          <div class="usa-accordion usa-accordion--bordered" style="margin-bottom: 20px;">
-            <h3 class="usa-accordion__heading">
-              <button type="button" class="usa-accordion__button" aria-expanded="false" aria-controls="doc-upload-icon-key">
-                Icon Key
-              </button>
-            </h3>
-            <div id="doc-upload-icon-key" class="usa-accordion__content usa-prose" hidden>
-              <div class="icon-key-grid">
-                <div class="icon-key-item">
-                  <img src="assets/icon-delete.png" alt="Delete Document icon" width="24" height="24">
-                  <span>- Delete Document</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section 13: Instructions -->
-          <div class="section-indicator" data-section="13">
-            <label class="usa-label" style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;">Instructions <span class="field-required">Required</span></label>
-            <div class="wysiwyg-wrapper">
-              <div class="wysiwyg-toolbar">
-                <button type="button" onmousedown="event.preventDefault(); document.execCommand('bold')"><strong>B</strong></button>
-                <button type="button" onmousedown="event.preventDefault(); document.execCommand('italic')"><em>I</em></button>
-                <button type="button" onmousedown="event.preventDefault(); document.execCommand('underline')"><u>U</u></button>
-                <div class="toolbar-sep"></div>
-                <button type="button" onmousedown="event.preventDefault(); document.execCommand('insertUnorderedList')">&#8226; List</button>
-                <button type="button" onmousedown="event.preventDefault(); document.execCommand('insertOrderedList')">1. List</button>
-                <div class="toolbar-sep"></div>
-                <button type="button" onmousedown="event.preventDefault(); insertLink()">&#128279; Link</button>
-              </div>
-              <div class="wysiwyg-content" id="instructions" contenteditable="true" aria-label="Instructions" role="textbox" aria-multiline="true"></div>
-              <div class="wysiwyg-footer"><span class="char-count" data-for="instructions">0</span>/5000</div>
-            </div>
-
-            <p style="font-weight: 700; margin-top: 2rem;">Please configure the documents you will collect with this application.</p>
-
-            <!-- Document 1 -->
-            <div class="section-indicator section-indicator--small" data-section="1" style="background-color: #fff; padding: 2.4rem 2.4rem 2.4rem 5rem; border: 1px solid #dfe1e2; border-radius: 0.5rem; margin-top: 2rem;">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                <h3 style="font-size: 1.8rem; font-weight: 700; margin: 0;">Document 1</h3>
-                <button type="button" style="background: none; border: none; cursor: pointer; padding: 0;" aria-label="Delete Document 1">
-                  <img src="assets/icon-delete.png" alt="Delete" width="24" height="24">
-                </button>
-              </div>
-              <hr style="border: none; border-top: 1px solid #dfe1e2; margin-bottom: 2rem;">
-              <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: end;">
-                <div class="usa-form-group" style="margin: 0;">
-                  <label class="usa-label" for="doc1-type">1. Type <span class="field-required">Required</span></label>
-                  <select class="usa-select" id="doc1-type" name="doc1-type">
-                    <option value="">Please Select</option>
-                  </select>
-                </div>
-                <div class="usa-form-group" style="margin: 0;">
-                  <label class="usa-label" for="doc1-subtype">1. Sub Type</label>
-                  <select class="usa-select" id="doc1-subtype" name="doc1-subtype">
-                    <option value="">Please Select</option>
-                  </select>
-                </div>
-                <div class="usa-checkbox" style="padding-bottom: 0.8rem;">
-                  <input class="usa-checkbox__input" id="doc1-required" type="checkbox" name="doc1-required">
-                  <label class="usa-checkbox__label" for="doc1-required">Required</label>
-                </div>
-                <div class="usa-checkbox" style="padding-bottom: 0.8rem;">
-                  <input class="usa-checkbox__input" id="doc1-instructions" type="checkbox" name="doc1-instructions">
-                  <label class="usa-checkbox__label" for="doc1-instructions">Instructions</label>
-                </div>
-              </div>
-            </div>
-
-            <!-- Document 2 -->
-            <div class="section-indicator section-indicator--small" data-section="2" style="background-color: #fff; padding: 2.4rem 2.4rem 2.4rem 5rem; border: 1px solid #dfe1e2; border-radius: 0.5rem; margin-top: 2rem;">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
-                <h3 style="font-size: 1.8rem; font-weight: 700; margin: 0;">Document 2</h3>
-                <button type="button" style="background: none; border: none; cursor: pointer; padding: 0;" aria-label="Delete Document 2">
-                  <img src="assets/icon-delete.png" alt="Delete" width="24" height="24">
-                </button>
-              </div>
-              <hr style="border: none; border-top: 1px solid #dfe1e2; margin-bottom: 2rem;">
-              <div style="display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 2rem; align-items: end;">
-                <div class="usa-form-group" style="margin: 0;">
-                  <label class="usa-label" for="doc2-type">2. Type <span class="field-required">Required</span></label>
-                  <select class="usa-select" id="doc2-type" name="doc2-type">
-                    <option value="">Please Select</option>
-                  </select>
-                </div>
-                <div class="usa-form-group" style="margin: 0;">
-                  <label class="usa-label" for="doc2-subtype">2. Sub Type</label>
-                  <select class="usa-select" id="doc2-subtype" name="doc2-subtype">
-                    <option value="">Please Select</option>
-                  </select>
-                </div>
-                <div class="usa-checkbox" style="padding-bottom: 0.8rem;">
-                  <input class="usa-checkbox__input" id="doc2-required" type="checkbox" name="doc2-required">
-                  <label class="usa-checkbox__label" for="doc2-required">Required</label>
-                </div>
-                <div class="usa-checkbox" style="padding-bottom: 0.8rem;">
-                  <input class="usa-checkbox__input" id="doc2-instructions" type="checkbox" name="doc2-instructions">
-                  <label class="usa-checkbox__label" for="doc2-instructions">Instructions</label>
-                </div>
-              </div>
-            </div>
-
-            <button type="button" class="usa-button usa-button--accent-warm" style="margin-top: 2rem;">Add More</button>
-
-          </div>
-
-          <div class="app-builder-button-container">
-            <a href="external-integration.html" class="usa-button usa-button--outline">Back</a>
-            <a href="user-information.html" class="usa-button">Next</a>
-          </div>
+      <!-- Instructions Accordion (expanded by default) -->
+      <div class="usa-accordion usa-accordion--bordered" style="margin-top: 4rem; margin-bottom: 4rem;">
+        <h3 class="usa-accordion__heading">
+          <button type="button" class="usa-accordion__button" aria-expanded="true" aria-controls="instructions-content">
+            Instructions
+          </button>
+        </h3>
+        <div id="instructions-content" class="usa-accordion__content">
+          <p style="margin: 0; font-size: 1.6rem;">Get your UX license for only $5000 or More!</p>
         </div>
       </div>
 
+      <!-- Application Card -->
+      <div class="application-card">
+
+          <!-- Sub-section Tab Strip -->
+          <div class="section-tabs" role="tablist" aria-label="Information sections">
+            <button class="section-tab active" role="tab" aria-selected="true"
+              aria-controls="panel-personal" id="tab-personal">Personal Information</button>
+            <button class="section-tab" role="tab" aria-selected="false"
+              aria-controls="panel-contact" id="tab-contact">Contact Information</button>
+            <button class="section-tab" role="tab" aria-selected="false"
+              aria-controls="panel-mailing" id="tab-mailing">Mailing Address</button>
+            <button class="section-tab" role="tab" aria-selected="false"
+              aria-controls="panel-identification" id="tab-identification">Identification Information</button>
+          </div>
+
+          <!-- Panel 1: Personal Information -->
+          <div class="section-tab-panel active" id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
+            <div class="substep-heading">
+              <span class="substep-heading__counter">1</span>
+              <span class="substep-heading__total">of 4</span>
+              <span class="substep-heading__text">Personal Information</span>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="prefix">Prefix</label>
+              <select class="usa-select" id="prefix" name="prefix">
+                <option value="">Please Select</option>
+                <option value="mr">Mr.</option>
+                <option value="mrs">Mrs.</option>
+                <option value="ms">Ms.</option>
+                <option value="dr">Dr.</option>
+                <option value="prof">Prof.</option>
+              </select>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="first-name">First Name <span class="field-required">Required</span></label>
+              <input class="usa-input" id="first-name" name="first-name" type="text" autocomplete="given-name" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="middle-name">Middle Name</label>
+              <input class="usa-input" id="middle-name" name="middle-name" type="text" autocomplete="additional-name" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="last-name">Last Name <span class="field-required">Required</span></label>
+              <input class="usa-input" id="last-name" name="last-name" type="text" autocomplete="family-name" />
+            </div>
+          </div>
+
+          <!-- Panel 2: Contact Information -->
+          <div class="section-tab-panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact">
+            <div class="substep-heading">
+              <span class="substep-heading__counter">2</span>
+              <span class="substep-heading__total">of 4</span>
+              <span class="substep-heading__text">Contact Information</span>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="email">Email Address <span class="field-required">Required</span></label>
+              <input class="usa-input" id="email" name="email" type="email" autocomplete="email" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="phone">Phone Number <span class="field-required">Required</span></label>
+              <input class="usa-input" id="phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="phone-type">Phone Type</label>
+              <select class="usa-select" id="phone-type" name="phone-type">
+                <option value="">Please Select</option>
+                <option value="mobile">Mobile</option>
+                <option value="home">Home</option>
+                <option value="work">Work</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Panel 3: Mailing Address -->
+          <div class="section-tab-panel" id="panel-mailing" role="tabpanel" aria-labelledby="tab-mailing">
+            <div class="substep-heading">
+              <span class="substep-heading__counter">3</span>
+              <span class="substep-heading__total">of 4</span>
+              <span class="substep-heading__text">Mailing Address</span>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="street1">Street Address <span class="field-required">Required</span></label>
+              <input class="usa-input" id="street1" name="street1" type="text" autocomplete="address-line1" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="street2">Street Address Line 2</label>
+              <input class="usa-input" id="street2" name="street2" type="text" autocomplete="address-line2" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="city">City <span class="field-required">Required</span></label>
+              <input class="usa-input" id="city" name="city" type="text" autocomplete="address-level2" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="state">State <span class="field-required">Required</span></label>
+              <select class="usa-select" id="state" name="state" autocomplete="address-level1">
+                <option value="">Please Select</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MO">Missouri</option>
+                <option value="WI">Wisconsin</option>
+              </select>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="zip">ZIP Code <span class="field-required">Required</span></label>
+              <input class="usa-input" id="zip" name="zip" type="text" maxlength="10"
+                pattern="[0-9]{5}(-[0-9]{4})?" autocomplete="postal-code" style="max-width: 16rem;" />
+            </div>
+          </div>
+
+          <!-- Panel 4: Identification Information -->
+          <div class="section-tab-panel" id="panel-identification" role="tabpanel" aria-labelledby="tab-identification">
+            <div class="substep-heading">
+              <span class="substep-heading__counter">4</span>
+              <span class="substep-heading__total">of 4</span>
+              <span class="substep-heading__text">Identification Information</span>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="dob">Date of Birth <span class="field-required">Required</span></label>
+              <input class="usa-input" id="dob" name="dob" type="date" style="max-width: 20rem;" autocomplete="bday" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="id-type">ID Type <span class="field-required">Required</span></label>
+              <select class="usa-select" id="id-type" name="id-type">
+                <option value="">Please Select</option>
+                <option value="dl">Driver's License</option>
+                <option value="passport">Passport</option>
+                <option value="state-id">State ID</option>
+              </select>
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="id-number">ID Number <span class="field-required">Required</span></label>
+              <input class="usa-input" id="id-number" name="id-number" type="text" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="id-state">ID Issuing State</label>
+              <select class="usa-select" id="id-state" name="id-state">
+                <option value="">Please Select</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MO">Missouri</option>
+                <option value="WI">Wisconsin</option>
+              </select>
+            </div>
+          </div>
+
+      </div><!-- end .application-card -->
+
+      <!-- Action Buttons (outside the card) -->
+      <div class="form-actions">
+        <button type="button" class="usa-button usa-button--secondary">Cancel</button>
+        <button type="button" class="usa-button" id="next-btn">Next</button>
+      </div>
+
     </main>
+
+    <!-- Footer -->
+    <footer class="constituent-footer">
+      <p>Illinois Department of Natural Resources</p>
+      <p><a href="tel:9858858441">(985) 885-8441</a></p>
+      <p><a href="mailto:lisa.benavides@egov.com">lisa.benavides@egov.com</a></p>
+    </footer>
+
   </div>
 
   <script>
-    var MAX_CHARS = 5000;
-
-    document.querySelectorAll('.wysiwyg-content').forEach(function(editor) {
-      var id = editor.id;
-      var counter = document.querySelector('.char-count[data-for="' + id + '"]');
-
-      editor.addEventListener('input', function() {
-        var text = editor.innerText.replace(/\n$/, '');
-        if (text.length > MAX_CHARS) {
-          editor.innerText = text.substring(0, MAX_CHARS);
-          var range = document.createRange();
-          range.selectNodeContents(editor);
-          range.collapse(false);
-          var sel = window.getSelection();
-          sel.removeAllRanges();
-          sel.addRange(range);
-        }
-        var count = editor.innerText.replace(/\n$/, '').length;
-        counter.textContent = count;
-        counter.classList.toggle('over-limit', count >= MAX_CHARS);
+    // Tab switching
+    document.querySelectorAll('.section-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.section-tab').forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.section-tab-panel').forEach(function (p) {
+          p.classList.remove('active');
+        });
+        this.classList.add('active');
+        this.setAttribute('aria-selected', 'true');
+        document.getElementById(this.getAttribute('aria-controls')).classList.add('active');
       });
     });
 
-    function insertLink() {
-      var url = prompt('Enter URL:');
-      if (url) {
-        document.execCommand('createLink', false, url);
-      }
-    }
-
-
-    document.querySelectorAll('.usa-accordion__button').forEach(function(button) {
-      button.addEventListener('click', function() {
+    // Accordion toggle
+    document.querySelectorAll('.usa-accordion__button').forEach(function (button) {
+      button.addEventListener('click', function () {
         var expanded = this.getAttribute('aria-expanded') === 'true';
         var content = document.getElementById(this.getAttribute('aria-controls'));
         if (expanded) {
@@ -366,6 +467,15 @@
           content.removeAttribute('hidden');
         }
       });
+    });
+
+    // Next button advances tabs in sequence
+    var tabs = Array.from(document.querySelectorAll('.section-tab'));
+    document.getElementById('next-btn').addEventListener('click', function () {
+      var activeIndex = tabs.findIndex(function (t) { return t.classList.contains('active'); });
+      if (activeIndex < tabs.length - 1) {
+        tabs[activeIndex + 1].click();
+      }
     });
   </script>
 </body>
