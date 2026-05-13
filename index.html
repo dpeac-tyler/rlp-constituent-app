@@ -83,6 +83,11 @@
       font-weight: bold;
     }
 
+    .section-tab.visited {
+      color: #162e51;
+      border-top-color: #162e51;
+    }
+
     .section-tab:hover:not(.active) {
       color: #1b1b1b;
     }
@@ -255,9 +260,9 @@
 
           <!-- Sub-section Tab Strip -->
           <div class="section-tabs" role="tablist" aria-label="Information sections">
-            <button class="section-tab active" role="tab" aria-selected="true"
+            <button class="section-tab visited" role="tab" aria-selected="false"
               aria-controls="panel-personal" id="tab-personal">Personal Information</button>
-            <button class="section-tab" role="tab" aria-selected="false"
+            <button class="section-tab active" role="tab" aria-selected="true"
               aria-controls="panel-contact" id="tab-contact">Contact Information</button>
             <button class="section-tab" role="tab" aria-selected="false"
               aria-controls="panel-mailing" id="tab-mailing">Mailing Address</button>
@@ -266,7 +271,7 @@
           </div>
 
           <!-- Panel 1: Personal Information -->
-          <div class="section-tab-panel active" id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
+          <div class="section-tab-panel" id="panel-personal" role="tabpanel" aria-labelledby="tab-personal">
             <div class="substep-heading">
               <span class="substep-heading__counter">1</span>
               <span class="substep-heading__total">of 4</span>
@@ -302,16 +307,11 @@
           </div>
 
           <!-- Panel 2: Contact Information -->
-          <div class="section-tab-panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact">
+          <div class="section-tab-panel active" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact">
             <div class="substep-heading">
               <span class="substep-heading__counter">2</span>
               <span class="substep-heading__total">of 4</span>
               <span class="substep-heading__text">Contact Information</span>
-            </div>
-
-            <div class="usa-form-group">
-              <label class="usa-label" for="email">Email Address <span class="field-required">Required</span></label>
-              <input class="usa-input" id="email" name="email" type="email" autocomplete="email" />
             </div>
 
             <div class="usa-form-group">
@@ -320,13 +320,13 @@
             </div>
 
             <div class="usa-form-group">
-              <label class="usa-label" for="phone-type">Phone Type</label>
-              <select class="usa-select" id="phone-type" name="phone-type">
-                <option value="">Please Select</option>
-                <option value="mobile">Mobile</option>
-                <option value="home">Home</option>
-                <option value="work">Work</option>
-              </select>
+              <label class="usa-label" for="email">Email Address <span class="field-required">Required</span></label>
+              <input class="usa-input" id="email" name="email" type="email" autocomplete="email" />
+            </div>
+
+            <div class="usa-form-group">
+              <label class="usa-label" for="email-confirm">Re-Enter Email Address <span class="field-required">Required</span></label>
+              <input class="usa-input" id="email-confirm" name="email-confirm" type="email" autocomplete="off" />
             </div>
           </div>
 
@@ -422,7 +422,10 @@
       <!-- Action Buttons (outside the card) -->
       <div class="form-actions">
         <button type="button" class="usa-button usa-button--secondary">Cancel</button>
-        <button type="button" class="usa-button" id="next-btn">Next</button>
+        <div style="display: flex; gap: 1rem;">
+          <button type="button" class="usa-button usa-button--outline">Back</button>
+          <button type="button" class="usa-button" id="next-btn">Next</button>
+        </div>
       </div>
 
     </main>
