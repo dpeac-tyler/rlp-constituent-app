@@ -177,6 +177,12 @@
       font-size: 1.6rem;
     }
 
+    /* Suppress native browser calendar icon on date inputs */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+    }
+
     /* Constituent page spacing overrides */
     .app-builder-content__heading {
       margin-top: 8rem;
