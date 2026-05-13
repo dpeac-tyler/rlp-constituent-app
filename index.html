@@ -177,10 +177,10 @@
       font-size: 1.6rem;
     }
 
-    /* Suppress native browser calendar icon on date inputs */
+    /* Hide native calendar icon visually but keep it interactive */
     input[type="date"]::-webkit-calendar-picker-indicator {
-      display: none;
-      -webkit-appearance: none;
+      opacity: 0;
+      cursor: pointer;
     }
 
     /* Constituent page spacing overrides */
@@ -441,6 +441,19 @@
         }
       });
     });
+
+    // Date picker button opens native picker
+    var datePickerBtn = document.querySelector('.date-picker-button');
+    if (datePickerBtn) {
+      datePickerBtn.addEventListener('click', function () {
+        var input = document.getElementById('dob');
+        if (input && input.showPicker) {
+          input.showPicker();
+        } else if (input) {
+          input.focus();
+        }
+      });
+    }
 
     // Next button advances tabs in sequence
     var tabs = Array.from(document.querySelectorAll('.section-tab'));
