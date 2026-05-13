@@ -264,9 +264,9 @@
               aria-controls="panel-personal" id="tab-personal">Personal Information</button>
             <button class="section-tab visited" role="tab" aria-selected="false"
               aria-controls="panel-contact" id="tab-contact">Contact Information</button>
-            <button class="section-tab active" role="tab" aria-selected="true"
+            <button class="section-tab visited" role="tab" aria-selected="false"
               aria-controls="panel-mailing" id="tab-mailing">Mailing Address</button>
-            <button class="section-tab" role="tab" aria-selected="false"
+            <button class="section-tab active" role="tab" aria-selected="true"
               aria-controls="panel-identification" id="tab-identification">Identification Information</button>
           </div>
 
@@ -331,7 +331,7 @@
           </div>
 
           <!-- Panel 3: Mailing Address -->
-          <div class="section-tab-panel active" id="panel-mailing" role="tabpanel" aria-labelledby="tab-mailing">
+          <div class="section-tab-panel" id="panel-mailing" role="tabpanel" aria-labelledby="tab-mailing">
             <div class="substep-heading">
               <span class="substep-heading__counter">3</span>
               <span class="substep-heading__total">of 4</span>
@@ -362,7 +362,7 @@
           </div>
 
           <!-- Panel 4: Identification Information -->
-          <div class="section-tab-panel" id="panel-identification" role="tabpanel" aria-labelledby="tab-identification">
+          <div class="section-tab-panel active" id="panel-identification" role="tabpanel" aria-labelledby="tab-identification">
             <div class="substep-heading">
               <span class="substep-heading__counter">4</span>
               <span class="substep-heading__total">of 4</span>
@@ -371,36 +371,14 @@
 
             <div class="usa-form-group">
               <label class="usa-label" for="dob">Date of Birth <span class="field-required">Required</span></label>
-              <input class="usa-input" id="dob" name="dob" type="date" style="max-width: 20rem;" autocomplete="bday" />
-            </div>
-
-            <div class="usa-form-group">
-              <label class="usa-label" for="id-type">ID Type <span class="field-required">Required</span></label>
-              <select class="usa-select" id="id-type" name="id-type">
-                <option value="">Please Select</option>
-                <option value="dl">Driver's License</option>
-                <option value="passport">Passport</option>
-                <option value="state-id">State ID</option>
-              </select>
-            </div>
-
-            <div class="usa-form-group">
-              <label class="usa-label" for="id-number">ID Number <span class="field-required">Required</span></label>
-              <input class="usa-input" id="id-number" name="id-number" type="text" />
-            </div>
-
-            <div class="usa-form-group">
-              <label class="usa-label" for="id-state">ID Issuing State</label>
-              <select class="usa-select" id="id-state" name="id-state">
-                <option value="">Please Select</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="MI">Michigan</option>
-                <option value="MN">Minnesota</option>
-                <option value="MO">Missouri</option>
-                <option value="WI">Wisconsin</option>
-              </select>
+              <div class="date-picker-wrapper">
+                <input class="usa-input" id="dob" name="dob" type="date" autocomplete="bday" />
+                <button type="button" class="date-picker-button" aria-label="Open date picker">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+                    <path d="M128 0c13.3 0 24 10.7 24 24l0 40 144 0 0-40c0-13.3 10.7-24 24-24s24 10.7 24 24l0 40 40 0c35.3 0 64 28.7 64 64l0 16 0 48 0 256c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 192l0-48 0-16C0 92.7 28.7 64 64 64l40 0 0-40c0-13.3 10.7-24 24-24zM400 192L48 192l0 256c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-256zM128 296c0-13.3 10.7-24 24-24l144 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-13.3 0-24-10.7-24-24zm0 80c0-13.3 10.7-24 24-24l80 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24z"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 
