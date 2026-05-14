@@ -265,7 +265,38 @@
             <span class="substep-heading__text">Questions</span>
           </div>
 
-          <!-- Questions will be added here -->
+          <h3 style="font-size: 2rem; font-weight: 700; color: #1b1b1b; margin: 0 0 2.4rem;">Questions</h3>
+
+          <!-- Text input -->
+          <div class="usa-form-group">
+            <label class="usa-label" for="info-input">Enter information here</label>
+            <input class="usa-input" id="info-input" name="info-input" type="text" />
+          </div>
+
+          <!-- Radio group -->
+          <div class="usa-form-group">
+            <fieldset class="usa-fieldset">
+              <legend class="usa-legend">Please answer Yes or No to this question</legend>
+              <div class="radio-group-inline">
+                <div class="usa-radio">
+                  <input class="usa-radio__input" id="answer-yes" type="radio" name="yes-no" value="yes" />
+                  <label class="usa-radio__label" for="answer-yes">Yes</label>
+                </div>
+                <div class="usa-radio">
+                  <input class="usa-radio__input" id="answer-no" type="radio" name="yes-no" value="no" />
+                  <label class="usa-radio__label" for="answer-no">No</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Acknowledgement checkbox -->
+          <div class="usa-form-group">
+            <div class="usa-checkbox">
+              <input class="usa-checkbox__input" id="acknowledge" type="checkbox" name="acknowledge" value="acknowledged" />
+              <label class="usa-checkbox__label" for="acknowledge">Please acknowledge this</label>
+            </div>
+          </div>
 
         </div>
 
