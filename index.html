@@ -431,6 +431,15 @@
       });
     });
 
+    // Step indicator navigation
+    var stepPages = ['index.html', 'questions.html', 'fees.html', 'document-upload.html', 'information-summary.html'];
+    document.querySelectorAll('.usa-step-indicator__segment').forEach(function (segment, i) {
+      if (stepPages[i]) {
+        segment.style.cursor = 'pointer';
+        segment.addEventListener('click', function () { window.location.href = stepPages[i]; });
+      }
+    });
+
     // Accordion toggle
     document.querySelectorAll('.usa-accordion__button').forEach(function (button) {
       button.addEventListener('click', function () {
