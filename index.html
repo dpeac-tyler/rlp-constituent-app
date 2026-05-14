@@ -459,12 +459,14 @@
       });
     }
 
-    // Next button advances tabs in sequence
+    // Next button advances tabs in sequence; navigates to questions.html on last tab
     var tabs = Array.from(document.querySelectorAll('.section-tab'));
     document.getElementById('next-btn').addEventListener('click', function () {
       var activeIndex = tabs.findIndex(function (t) { return t.classList.contains('active'); });
       if (activeIndex < tabs.length - 1) {
         tabs[activeIndex + 1].click();
+      } else {
+        window.location.href = 'questions.html';
       }
     });
   </script>
