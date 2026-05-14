@@ -159,7 +159,7 @@
 
             <div class="usa-form-group" style="margin-bottom: 2rem;">
               <label class="usa-label" for="reference-doc">Reference Document <span style="color:#d54309;">*</span></label>
-              <input class="usa-input" id="reference-doc" name="reference-doc" type="file" required />
+              <input class="usa-input" id="reference-doc" name="reference-doc" type="text" readonly />
             </div>
 
             <div class="usa-form-group" style="margin-bottom: 0.4rem;">
@@ -169,7 +169,20 @@
             </div>
             <p id="doc-notes-count" style="font-size: 1.6rem; margin: 0 0 2rem;">100 of 100 remaining</p>
 
-            <button type="button" class="usa-button">Upload</button>
+            <!-- Hidden real file picker -->
+            <input type="file" id="file-picker" style="display: none;" />
+
+            <!-- Button states -->
+            <div id="upload-btn-state">
+              <button type="button" class="usa-button" id="upload-btn">Upload</button>
+            </div>
+            <div id="save-cancel-btn-state" style="display: none; gap: 1rem; display: none;">
+              <button type="button" class="usa-button" id="save-btn">Save</button>
+              <button type="button" class="usa-button usa-button--secondary" id="cancel-upload-btn">Cancel</button>
+            </div>
+            <div id="delete-btn-state" style="display: none;">
+              <button type="button" class="usa-button usa-button--secondary" id="delete-btn">Delete</button>
+            </div>
 
           </div>
         </div>
@@ -200,6 +213,50 @@
       var remaining = 100 - textarea.value.length;
       document.getElementById('doc-notes-count').textContent = remaining + ' of 100 remaining';
     }
+
+    var filePicker = document.getElementById('file-picker');
+    var refDocInput = document.getElementById('reference-doc');
+    var uploadState = document.getElementById('upload-btn-state');
+    var saveCancelState = document.getElementById('save-cancel-btn-state');
+    var deleteState = document.getElementById('delete-btn-state');
+
+    function showState(state) {
+      uploadState.style.display = state === 'upload' ? 'block' : 'none';
+      saveCancelState.style.display = state === 'save-cancel' ? 'flex' : 'none';
+      deleteState.style.display = state === 'delete' ? 'block' : 'none';
+    }
+
+    // Upload clicked — open file picker
+    document.getElementById('upload-btn').addEventListener('click', function () {
+      filePicker.click();
+    });
+
+    // File selected — populate input, show Save/Cancel
+    filePicker.addEventListener('change', function () {
+      if (filePicker.files.length > 0) {
+        refDocInput.value = filePicker.files[0].name;
+        showState('save-cancel');
+      }
+    });
+
+    // Save clicked — show Delete
+    document.getElementById('save-btn').addEventListener('click', function () {
+      showState('delete');
+    });
+
+    // Cancel clicked — clear and return to Upload
+    document.getElementById('cancel-upload-btn').addEventListener('click', function () {
+      refDocInput.value = '';
+      filePicker.value = '';
+      showState('upload');
+    });
+
+    // Delete clicked — clear and return to Upload
+    document.getElementById('delete-btn').addEventListener('click', function () {
+      refDocInput.value = '';
+      filePicker.value = '';
+      showState('upload');
+    });
 
     // Accordion toggle
     document.querySelectorAll('.usa-accordion__button').forEach(function (button) {
