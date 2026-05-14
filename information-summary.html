@@ -76,6 +76,16 @@
       margin-top: 8rem;
       margin-bottom: 4rem;
     }
+
+    .usa-checkbox__input:checked:disabled + .usa-checkbox__label::before {
+      background-color: #71767a;
+      border-color: #71767a;
+    }
+
+    .usa-checkbox__input:disabled + .usa-checkbox__label {
+      color: #454545;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 
@@ -195,13 +205,39 @@
             <p style="font-size: 1.6rem; margin: 0 0 0.8rem;"><strong>Question 1:</strong> Answer 1</p>
             <p style="font-size: 1.6rem; margin: 0 0 1.2rem;"><strong>Is this a yes/no question:</strong> Yes</p>
             <div class="usa-checkbox">
-              <input class="usa-checkbox__input" id="summary-acknowledge" type="checkbox" checked />
+              <input class="usa-checkbox__input" id="summary-acknowledge" type="checkbox" checked disabled />
               <label class="usa-checkbox__label" for="summary-acknowledge">You must acknowledge this before proceeding</label>
             </div>
           </div>
 
           <div style="margin-top: 2.4rem;">
             <button type="button" class="usa-button" onclick="window.location.href='questions.html'">Edit</button>
+          </div>
+
+          <h4 style="font-size: 1.8rem; font-weight: 700; color: #1b1b1b; margin: 2.4rem 0 1.6rem;">Fee Summary</h4>
+          <div style="padding-left: 0.8rem;">
+            <p style="font-size: 1.6rem; margin: 0 0 0.4rem;">Form Number</p>
+            <p style="font-size: 1.6rem; font-weight: 700; margin: 0 0 2rem;">1</p>
+            <p style="font-size: 1.6rem; font-weight: 700; margin: 0 0 1rem;">Application Fee</p>
+            <hr style="border: none; border-top: 1px solid #dfe1e2; margin: 0 0 1.5rem;" />
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6rem;">
+              <p style="font-size: 1.6rem; font-weight: 700; margin: 0;">Application Fee Name</p>
+              <p style="font-size: 1.6rem; font-weight: 700; margin: 0;">Application Fee</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <p style="font-size: 1.6rem; margin: 0;">Description of Fee</p>
+              <p style="font-size: 1.6rem; margin: 0;">$10.00</p>
+            </div>
+            <div style="margin: 3rem 0 1.5rem;"></div>
+            <hr style="border: none; border-top: 1px solid #dfe1e2; margin: 0 0 1.5rem;" />
+            <div style="text-align: right;">
+              <p style="font-size: 1.6rem; font-weight: 700; margin: 0 0 0.4rem;">Application Grand Total</p>
+              <p style="font-size: 1.6rem; font-weight: 700; margin: 0;">$10.00</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 2.4rem;">
+            <button type="button" class="usa-button" onclick="window.location.href='fees.html'">Edit</button>
           </div>
         </div>
       </div>
