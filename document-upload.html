@@ -158,14 +158,14 @@
           <div style="background-color: #dfe1e2; padding: 2.4rem;">
 
             <div class="usa-form-group" style="margin-bottom: 2rem;">
-              <label class="usa-label" for="reference-doc">Reference Document <span style="color:#d54309;">*</span></label>
-              <input class="usa-input" id="reference-doc" name="reference-doc" type="text" readonly />
+              <label class="usa-label" for="reference-doc">Reference Document <span class="field-required">Required</span></label>
+              <input class="usa-input" id="reference-doc" name="reference-doc" type="text" readonly style="max-width: 50%;" />
             </div>
 
             <div class="usa-form-group" style="margin-bottom: 0.4rem;">
               <label class="usa-label" for="doc-notes">Document Notes</label>
               <textarea class="usa-textarea" id="doc-notes" name="doc-notes" maxlength="100" rows="4"
-                oninput="updateCount(this)"></textarea>
+                oninput="updateCount(this)" style="max-width: 50%;"></textarea>
             </div>
             <p id="doc-notes-count" style="font-size: 1.6rem; margin: 0 0 2rem;">100 of 100 remaining</p>
 
