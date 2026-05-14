@@ -151,7 +151,27 @@
       <div class="preview-container" style="margin-bottom: 4rem;">
         <div class="preview-container__header">Document Upload</div>
         <div class="preview-container__body">
-          <!-- Document upload content will be added here -->
+          <p style="font-size: 1.6rem; margin: 0 0 1rem;">Please upload your reference document</p>
+          <p style="font-size: 1.6rem; font-weight: 700; margin: 0 0 2rem;">File size and type limitations per attachment: 50 MB for txt, csv, png, jpg, jpeg, pdf, doc, xls, docx, xlsx</p>
+
+          <!-- Upload form gray container -->
+          <div style="background-color: #dfe1e2; padding: 2.4rem;">
+
+            <div class="usa-form-group" style="margin-bottom: 2rem;">
+              <label class="usa-label" for="reference-doc">Reference Document <span style="color:#d54309;">*</span></label>
+              <input class="usa-input" id="reference-doc" name="reference-doc" type="file" required />
+            </div>
+
+            <div class="usa-form-group" style="margin-bottom: 0.4rem;">
+              <label class="usa-label" for="doc-notes">Document Notes</label>
+              <textarea class="usa-textarea" id="doc-notes" name="doc-notes" maxlength="100" rows="4"
+                oninput="updateCount(this)"></textarea>
+            </div>
+            <p id="doc-notes-count" style="font-size: 1.6rem; margin: 0 0 2rem;">100 of 100 remaining</p>
+
+            <button type="button" class="usa-button">Upload</button>
+
+          </div>
         </div>
       </div>
 
@@ -176,6 +196,11 @@
   </div>
 
   <script>
+    function updateCount(textarea) {
+      var remaining = 100 - textarea.value.length;
+      document.getElementById('doc-notes-count').textContent = remaining + ' of 100 remaining';
+    }
+
     // Accordion toggle
     document.querySelectorAll('.usa-accordion__button').forEach(function (button) {
       button.addEventListener('click', function () {
