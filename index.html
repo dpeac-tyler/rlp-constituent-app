@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026 UX License - Information Collection</title>
+  <title>Constituent Application - PhotoID - Information Collection</title>
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     /* Fix the CSS variable typo in styles.css for step labels */
@@ -185,8 +185,36 @@
 
     /* Constituent page spacing overrides */
     .app-builder-content__heading {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin: 0;
+    }
+
+    .heading-url-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid #dfe1e2;
+      padding-bottom: 1rem;
       margin-top: 8rem;
       margin-bottom: 4rem;
+    }
+
+    .heading-url-row__url {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.6rem;
+      font-size: 1.6rem;
+      color: #71767a;
+      padding-bottom: 0.2rem;
+    }
+
+    .heading-url-row__url a {
+      color: #005ea2;
+      text-decoration: underline;
+      font-size: 1.6rem;
+      font-weight: 700;
     }
 
     .date-picker-wrapper .usa-input {
@@ -253,8 +281,14 @@
       </div>
 
       <!-- Title / Description -->
-      <h1 class="app-builder-content__heading">2026 UX License</h1>
-      <p class="app-builder-content__text">Get your UX license for only $5000</p>
+      <div class="heading-url-row">
+        <h1 class="app-builder-content__heading">Constituent Application - PhotoID</h1>
+        <div class="heading-url-row__url">
+          <span>For more information visit:</span>
+          <a href="#">agencyurl.com</a>
+        </div>
+      </div>
+      <p class="app-builder-content__text">Constituent Application - Photo ID description information</p>
 
       <!-- Instructions Accordion (expanded by default) -->
       <div class="usa-accordion usa-accordion--bordered" style="margin-top: 4rem; margin-bottom: 4rem;">
