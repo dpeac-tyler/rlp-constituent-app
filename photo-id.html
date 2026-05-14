@@ -154,7 +154,43 @@
       <div class="preview-container" style="margin-bottom: 4rem;">
         <div class="preview-container__header">Photo ID</div>
         <div class="preview-container__body">
-          <!-- Photo ID content will be added here -->
+          <p style="font-size: 1.6rem; margin: 0 0 2rem;">You will need to upload a photo id for your pocket card. Please use the Upload button below.</p>
+
+          <div style="background-color: #dfe1e2; padding: 2.4rem;">
+
+            <div class="usa-form-group" style="margin-bottom: 2rem;">
+              <label class="usa-label" for="photo-input">Photo ID <span class="field-required">Required</span></label>
+              <input class="usa-input" id="photo-input" name="photo-input" type="text" readonly style="max-width: 50%;" />
+            </div>
+
+            <!-- 200x200 preview frame (hidden until file selected) -->
+            <div id="photo-preview-wrap" style="display: none; margin-bottom: 1.6rem;">
+              <div style="width: 200px; height: 200px; overflow: hidden; border: 2px solid #aeb0b5; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                <img id="photo-preview-img" src="" alt="Photo ID preview" style="width: 100%; height: 100%; object-fit: cover; transform-origin: center center; transition: transform 0.15s ease;" />
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.8rem; margin-top: 0.8rem;">
+                <button type="button" class="usa-button usa-button--outline" id="zoom-out-btn" style="padding: 0.4rem 1.2rem; font-size: 1.8rem; line-height: 1;">−</button>
+                <span style="font-size: 1.4rem; color: #71767a;" id="zoom-label">100%</span>
+                <button type="button" class="usa-button usa-button--outline" id="zoom-in-btn" style="padding: 0.4rem 1.2rem; font-size: 1.8rem; line-height: 1;">+</button>
+              </div>
+            </div>
+
+            <!-- Hidden real file picker -->
+            <input type="file" id="photo-file-picker" accept="image/jpeg,image/jpg,image/png" style="display: none;" />
+
+            <!-- Button states -->
+            <div id="photo-upload-state">
+              <button type="button" class="usa-button" id="photo-upload-btn">Upload</button>
+            </div>
+            <div id="photo-save-cancel-state" style="display: none; gap: 1rem;">
+              <button type="button" class="usa-button" id="photo-save-btn">Save</button>
+              <button type="button" class="usa-button usa-button--secondary" id="photo-cancel-btn">Cancel</button>
+            </div>
+            <div id="photo-delete-state" style="display: none;">
+              <button type="button" class="usa-button usa-button--secondary" id="photo-delete-btn">Delete</button>
+            </div>
+
+          </div>
         </div>
       </div>
 
@@ -179,6 +215,72 @@
   </div>
 
   <script>
+    // Photo ID upload state machine
+    var filePicker   = document.getElementById('photo-file-picker');
+    var photoInput   = document.getElementById('photo-input');
+    var previewWrap  = document.getElementById('photo-preview-wrap');
+    var previewImg   = document.getElementById('photo-preview-img');
+    var zoomLabel    = document.getElementById('zoom-label');
+    var uploadState  = document.getElementById('photo-upload-state');
+    var saveCancelState = document.getElementById('photo-save-cancel-state');
+    var deleteState  = document.getElementById('photo-delete-state');
+    var zoom = 1;
+
+    function showPhotoState(state) {
+      uploadState.style.display     = state === 'upload'      ? 'block' : 'none';
+      saveCancelState.style.display = state === 'save-cancel' ? 'flex'  : 'none';
+      deleteState.style.display     = state === 'delete'      ? 'block' : 'none';
+    }
+
+    function setZoom(z) {
+      zoom = Math.min(3, Math.max(0.5, z));
+      previewImg.style.transform = 'scale(' + zoom + ')';
+      zoomLabel.textContent = Math.round(zoom * 100) + '%';
+    }
+
+    document.getElementById('photo-upload-btn').addEventListener('click', function () {
+      filePicker.click();
+    });
+
+    filePicker.addEventListener('change', function () {
+      if (filePicker.files && filePicker.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+          photoInput.value = filePicker.files[0].name;
+          zoom = 1;
+          previewImg.style.transform = 'scale(1)';
+          zoomLabel.textContent = '100%';
+          previewWrap.style.display = 'block';
+          showPhotoState('save-cancel');
+        };
+        reader.readAsDataURL(filePicker.files[0]);
+      }
+    });
+
+    document.getElementById('zoom-in-btn').addEventListener('click', function () { setZoom(zoom + 0.25); });
+    document.getElementById('zoom-out-btn').addEventListener('click', function () { setZoom(zoom - 0.25); });
+
+    document.getElementById('photo-save-btn').addEventListener('click', function () {
+      showPhotoState('delete');
+    });
+
+    document.getElementById('photo-cancel-btn').addEventListener('click', function () {
+      previewImg.src = '';
+      photoInput.value = '';
+      filePicker.value = '';
+      previewWrap.style.display = 'none';
+      showPhotoState('upload');
+    });
+
+    document.getElementById('photo-delete-btn').addEventListener('click', function () {
+      previewImg.src = '';
+      photoInput.value = '';
+      filePicker.value = '';
+      previewWrap.style.display = 'none';
+      showPhotoState('upload');
+    });
+
     // Step indicator navigation
     var stepPages = ['index.html', 'questions.html', 'fees.html', 'document-upload.html', 'information-summary.html', 'photo-id.html', 'electronic-signature.html'];
     document.querySelectorAll('.usa-step-indicator__segment').forEach(function (segment, i) {
