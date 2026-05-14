@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026 UX License - Questions</title>
+  <title>2026 UX License - Fees</title>
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     /* Fix the CSS variable typo in styles.css for step labels */
@@ -38,107 +38,6 @@
       font-size: 1.4rem;
       color: #71767a;
       padding-top: 0.4rem;
-    }
-
-    /* ===== Application Card ===== */
-    .application-card {
-      border: 1px solid #aeb0b5;
-      background-color: #fff;
-      padding: 0 2.4rem 2.4rem;
-      margin-top: 2rem;
-      margin-bottom: 4rem;
-    }
-
-    /* ===== Section Tabs (sub-step tab strip) ===== */
-    .section-tabs {
-      display: flex;
-      gap: 4px;
-      margin-top: 2rem;
-    }
-
-    .section-tab {
-      flex: 1;
-      max-width: 24rem;
-      padding: 1rem 0 1.6rem;
-      font-family: "Public Sans Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #919191;
-      background: none;
-      border: none;
-      border-top: 8px solid #c9c9c9;
-      cursor: pointer;
-      text-align: left;
-      line-height: 1.4;
-    }
-
-    .section-tab.active {
-      color: #005ea2;
-      border-top-color: #005ea2;
-      font-weight: bold;
-    }
-
-    .section-tab.visited {
-      color: #162e51;
-      border-top-color: #162e51;
-    }
-
-    .section-tab:hover:not(.active) {
-      color: #1b1b1b;
-    }
-
-    .section-tab:focus {
-      outline: 0.25rem solid #2491ff;
-      outline-offset: -2px;
-    }
-
-    /* ===== Tab Panels ===== */
-    .section-tab-panel {
-      display: none;
-    }
-
-    .section-tab-panel.active {
-      display: block;
-    }
-
-    /* ===== Sub-step Heading ===== */
-    .substep-heading {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin: 2rem 0 4.4rem;
-    }
-
-    .substep-heading__counter {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 3rem;
-      height: 3rem;
-      min-width: 3rem;
-      border-radius: 50%;
-      background-color: #005ea2;
-      color: #fff;
-      font-size: 1.7rem;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .substep-heading__total {
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: #005ea2;
-    }
-
-    .substep-heading__text {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1b1b1b;
-    }
-
-    /* ===== Form Groups ===== */
-    .usa-form-group {
-      margin-bottom: 4rem;
     }
 
     /* ===== Action Buttons Bar ===== */
@@ -199,10 +98,10 @@
           <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
             <span class="usa-step-indicator__segment-label">Information Collection</span>
           </li>
-          <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
+          <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
             <span class="usa-step-indicator__segment-label">Questions</span>
           </li>
-          <li class="usa-step-indicator__segment">
+          <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
             <span class="usa-step-indicator__segment-label">Fees</span>
           </li>
           <li class="usa-step-indicator__segment">
@@ -226,9 +125,9 @@
       <!-- Step heading -->
       <div class="usa-step-indicator__header">
         <h1 class="usa-step-indicator__heading">
-          <span class="usa-step-indicator__heading-counter">2</span>
+          <span class="usa-step-indicator__heading-counter">3</span>
           <span class="usa-step-indicator__total-steps">of 8</span>
-          <span class="usa-step-indicator__heading-text">Questions</span>
+          <span class="usa-step-indicator__heading-text">Fees</span>
         </h1>
       </div>
 
@@ -248,66 +147,20 @@
         </div>
       </div>
 
-      <!-- Application Card -->
-      <div class="application-card">
-
-        <!-- Sub-section Tab Strip -->
-        <div class="section-tabs" role="tablist" aria-label="Question pages">
-          <button class="section-tab active" role="tab" aria-selected="true"
-            aria-controls="panel-page1" id="tab-page1">Page 1</button>
+      <!-- Fees Blue Bar Container -->
+      <div class="preview-container" style="margin-bottom: 4rem;">
+        <div class="preview-container__header">Fees</div>
+        <div class="preview-container__body">
+          <!-- Fee content will be added here -->
         </div>
+      </div>
 
-        <!-- Panel: Page 1 -->
-        <div class="section-tab-panel active" id="panel-page1" role="tabpanel" aria-labelledby="tab-page1">
-          <div class="substep-heading">
-            <span class="substep-heading__counter">1</span>
-            <span class="substep-heading__total">of 1</span>
-            <span class="substep-heading__text">Questions</span>
-          </div>
-
-          <h3 style="font-size: 2rem; font-weight: 700; color: #1b1b1b; margin: 0 0 2.4rem;">Questions</h3>
-
-          <!-- Text input -->
-          <div class="usa-form-group">
-            <label class="usa-label" for="info-input">Enter information here</label>
-            <input class="usa-input" id="info-input" name="info-input" type="text" />
-          </div>
-
-          <!-- Radio group -->
-          <div class="usa-form-group">
-            <fieldset class="usa-fieldset">
-              <legend class="usa-legend">Please answer Yes or No to this question</legend>
-              <div>
-                <div class="usa-radio">
-                  <input class="usa-radio__input" id="answer-yes" type="radio" name="yes-no" value="yes" />
-                  <label class="usa-radio__label" for="answer-yes">Yes</label>
-                </div>
-                <div class="usa-radio">
-                  <input class="usa-radio__input" id="answer-no" type="radio" name="yes-no" value="no" />
-                  <label class="usa-radio__label" for="answer-no">No</label>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-
-          <!-- Acknowledgement checkbox -->
-          <div class="usa-form-group">
-            <div class="usa-checkbox">
-              <input class="usa-checkbox__input" id="acknowledge" type="checkbox" name="acknowledge" value="acknowledged" />
-              <label class="usa-checkbox__label" for="acknowledge">Please acknowledge this</label>
-            </div>
-          </div>
-
-        </div>
-
-      </div><!-- end .application-card -->
-
-      <!-- Action Buttons (outside the card) -->
+      <!-- Action Buttons -->
       <div class="form-actions">
         <button type="button" class="usa-button usa-button--secondary">Cancel</button>
         <div style="display: flex; gap: 1rem;">
-          <button type="button" class="usa-button usa-button--outline" onclick="window.location.href='index.html'">Back</button>
-          <button type="button" class="usa-button" onclick="window.location.href='fees.html'">Next</button>
+          <button type="button" class="usa-button usa-button--outline" onclick="window.location.href='questions.html'">Back</button>
+          <button type="button" class="usa-button">Next</button>
         </div>
       </div>
 
