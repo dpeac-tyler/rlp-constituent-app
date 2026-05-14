@@ -398,7 +398,7 @@
       <div class="form-actions">
         <button type="button" class="usa-button usa-button--secondary">Cancel</button>
         <div style="display: flex; gap: 1rem;">
-          <button type="button" class="usa-button usa-button--outline">Back</button>
+          <button type="button" class="usa-button usa-button--outline" id="back-btn">Back</button>
           <button type="button" class="usa-button" id="next-btn">Next</button>
         </div>
       </div>
@@ -459,7 +459,7 @@
       });
     }
 
-    // Next button advances tabs in sequence; navigates to questions.html on last tab
+    // Next/Back buttons advance or retreat through tabs; Next navigates to questions.html on last tab
     var tabs = Array.from(document.querySelectorAll('.section-tab'));
     document.getElementById('next-btn').addEventListener('click', function () {
       var activeIndex = tabs.findIndex(function (t) { return t.classList.contains('active'); });
@@ -467,6 +467,12 @@
         tabs[activeIndex + 1].click();
       } else {
         window.location.href = 'questions.html';
+      }
+    });
+    document.getElementById('back-btn').addEventListener('click', function () {
+      var activeIndex = tabs.findIndex(function (t) { return t.classList.contains('active'); });
+      if (activeIndex > 0) {
+        tabs[activeIndex - 1].click();
       }
     });
   </script>
