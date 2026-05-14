@@ -118,6 +118,9 @@
             <span class="usa-step-indicator__segment-label">Information Summary</span>
           </li>
           <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Photo ID</span>
+          </li>
+          <li class="usa-step-indicator__segment">
             <span class="usa-step-indicator__segment-label">Electronic Signature</span>
           </li>
           <li class="usa-step-indicator__segment">
@@ -133,7 +136,7 @@
       <div class="usa-step-indicator__header">
         <h1 class="usa-step-indicator__heading">
           <span class="usa-step-indicator__heading-counter">4</span>
-          <span class="usa-step-indicator__total-steps">of 8</span>
+          <span class="usa-step-indicator__total-steps">of 9</span>
           <span class="usa-step-indicator__heading-text">Document Upload</span>
         </h1>
       </div>
@@ -268,7 +271,7 @@
     });
 
     // Step indicator navigation
-    var stepPages = ['index.html', 'questions.html', 'fees.html', 'document-upload.html', 'information-summary.html', 'electronic-signature.html'];
+    var stepPages = ['index.html', 'questions.html', 'fees.html', 'document-upload.html', 'information-summary.html', 'photo-id.html', 'electronic-signature.html'];
     document.querySelectorAll('.usa-step-indicator__segment').forEach(function (segment, i) {
       if (stepPages[i]) {
         segment.style.cursor = 'pointer';

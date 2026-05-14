@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026 UX License - Electronic Signature</title>
+  <title>2026 UX License - Photo ID</title>
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     /* Fix the CSS variable typo in styles.css for step labels */
@@ -92,7 +92,7 @@
 
     <main id="main-content" class="grid-container">
 
-      <!-- Top 8-step progress indicator -->
+      <!-- Top 9-step progress indicator -->
       <div class="usa-step-indicator margin-top-4" aria-label="Application progress">
         <ol class="usa-step-indicator__segments">
           <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
@@ -110,10 +110,10 @@
           <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
             <span class="usa-step-indicator__segment-label">Information Summary</span>
           </li>
-          <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
+          <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
             <span class="usa-step-indicator__segment-label">Photo ID</span>
           </li>
-          <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
+          <li class="usa-step-indicator__segment">
             <span class="usa-step-indicator__segment-label">Electronic Signature</span>
           </li>
           <li class="usa-step-indicator__segment">
@@ -128,9 +128,9 @@
       <!-- Step heading -->
       <div class="usa-step-indicator__header">
         <h1 class="usa-step-indicator__heading">
-          <span class="usa-step-indicator__heading-counter">7</span>
+          <span class="usa-step-indicator__heading-counter">6</span>
           <span class="usa-step-indicator__total-steps">of 9</span>
-          <span class="usa-step-indicator__heading-text">Electronic Signature</span>
+          <span class="usa-step-indicator__heading-text">Photo ID</span>
         </h1>
       </div>
 
@@ -150,23 +150,11 @@
         </div>
       </div>
 
-      <!-- Electronic Signature Blue Bar Container -->
+      <!-- Photo ID Blue Bar Container -->
       <div class="preview-container" style="margin-bottom: 4rem;">
-        <div class="preview-container__header">Electronic Signature</div>
+        <div class="preview-container__header">Photo ID</div>
         <div class="preview-container__body">
-
-          <div class="usa-form-group" style="margin-bottom: 3rem;">
-            <div class="usa-checkbox">
-              <input class="usa-checkbox__input" id="attestation" type="checkbox" name="attestation" />
-              <label class="usa-checkbox__label" for="attestation">This is an attestation text <span class="field-required">Required</span></label>
-            </div>
-          </div>
-
-          <div class="usa-form-group" style="margin-bottom: 0;">
-            <label class="usa-label" for="signature-name">Please enter your name in the field below <span class="field-required">Required</span></label>
-            <input class="usa-input" id="signature-name" name="signature-name" type="text" />
-          </div>
-
+          <!-- Photo ID content will be added here -->
         </div>
       </div>
 
@@ -174,8 +162,8 @@
       <div class="form-actions">
         <button type="button" class="usa-button usa-button--secondary">Cancel</button>
         <div style="display: flex; gap: 1rem;">
-          <button type="button" class="usa-button usa-button--outline" onclick="window.location.href='photo-id.html'">Back</button>
-          <button type="button" class="usa-button">Next</button>
+          <button type="button" class="usa-button usa-button--outline" onclick="window.location.href='information-summary.html'">Back</button>
+          <button type="button" class="usa-button" onclick="window.location.href='electronic-signature.html'">Next</button>
         </div>
       </div>
 
