@@ -239,8 +239,9 @@
       }
     });
 
-    // Save clicked — show Delete
+    // Save clicked — show Delete, disable notes
     document.getElementById('save-btn').addEventListener('click', function () {
+      document.getElementById('doc-notes').disabled = true;
       showState('delete');
     });
 
@@ -251,10 +252,11 @@
       showState('upload');
     });
 
-    // Delete clicked — clear and return to Upload
+    // Delete clicked — clear, re-enable notes, return to Upload
     document.getElementById('delete-btn').addEventListener('click', function () {
       refDocInput.value = '';
       filePicker.value = '';
+      document.getElementById('doc-notes').disabled = false;
       showState('upload');
     });
 
