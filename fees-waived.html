@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Constituent Application - PhotoID - Fees</title>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.13.0/css/uswds.min.css" /> -->
+  <!-- banner styles -->
+
+  
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     /* Fix the CSS variable typo in styles.css for step labels */
@@ -109,6 +113,26 @@
       font-size: 1.6rem;
       font-weight: 700;
     }
+
+
+    .usa-alert {
+      background-color: #f0f0f0;
+    border-left: .5rem solid #a9aeb1;
+    color: #1b1b1b;
+    }
+
+    .usa-alert--info {
+      color: #1b1b1b;
+    background-color: #e7f6f8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 3.3333333333rem;
+    }
+
+
+
+
   </style>
 </head>
 
@@ -191,7 +215,7 @@
       </div>
 
       <!-- Fees Blue Bar Container -->
-      <div class="preview-container" style="margin-bottom: 4rem;">
+      <div class="preview-container" style="margin-bottom: 2rem;">
         <div class="preview-container__header">Fees</div>
         <div class="preview-container__body">
           <p style="font-size: 1.6rem; margin: 0 0 0.4rem;">Form Number</p>
@@ -215,34 +239,20 @@
           </div>
           <div style="margin: 6rem 0 3rem;"></div>
           <hr style="border: none; border-top: 1px solid #dfe1e2; margin: 0 0 3rem;" />
-
-          <!-- License/Permit Fee section -->
-          <div style="margin-top: 30px;">
-            <p style="font-size: 1.6rem; font-weight: 700; margin: 0 0 .6rem;">License/Permit Fee</p>
-            <hr style="border: none; border-top: 1px solid #dfe1e2; margin: 0 0 1rem;" />
-            <p style="font-size: 1.6rem; margin: 0;">This is the License/Permit Fee so I can see an example.</p>
-
-            <div style="margin-top: 30px;"></div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.2rem;">
-              <p style="font-size: 1.6rem; font-weight: 700; margin: 0;">License/Permit Fee Name</p>
-              <p style="font-size: 1.6rem; font-weight: 700; margin: 0;">License/Permit Fee</p>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <p style="font-size: 1.6rem; margin: 0; display: flex; align-items: center; gap: 0.8rem;">
-                License Permit Fee Example Name
-              </p>
-              <p style="font-size: 1.6rem; margin: 0;">$85.00</p>
-            </div>
-          </div>
-
-          <div style="margin: 6rem 0 3rem;"></div>
-          <hr style="border: none; border-top: 1px solid #dfe1e2; margin: 0 0 3rem;" />
           <div style="text-align: right;">
             <p style="font-size: 1.6rem; font-weight: 700; margin: 0 0 0.4rem;">Application Grand Total</p>
-            <p style="font-size: 1.6rem; font-weight: 700; margin: 0;">$85.00</p>
+            <p style="font-size: 1.6rem; font-weight: 700; margin: 0;">$0.00</p>
           </div>
+        </div>
+      </div>
+
+      <!-- No Payment Required Info Alert -->
+      <div class="usa-alert usa-alert--info" style="margin-bottom: 4rem;">
+        <div class="usa-alert__body">
+          <h4 class="usa-alert__heading">No Payment Required</h4>
+          <p class="usa-alert__text">
+            Your application fees have been waived. You will not be charged for this submission. Click Next to proceed to the review step.
+          </p>
         </div>
       </div>
 
@@ -268,7 +278,7 @@
 
   <script>
     // Step indicator navigation
-    var stepPages = ['index.html', 'questions.html', 'fees.html', 'document-upload.html', 'information-summary.html', 'photo-id.html', 'electronic-signature.html'];
+    var stepPages = ['index.html', 'questions.html', 'fees-waived.html', 'document-upload.html', 'information-summary.html', 'photo-id.html', 'electronic-signature.html'];
     document.querySelectorAll('.usa-step-indicator__segment').forEach(function (segment, i) {
       if (stepPages[i]) {
         segment.style.cursor = 'pointer';
